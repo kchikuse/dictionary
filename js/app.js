@@ -17,7 +17,7 @@
 			query = query.substring(1)
 		}
 
-		let names = index.search(query).filter(i => i.score >= 0.5).map(i => docs.find(e => e.i == i.ref))
+		let names = index.search(query).filter(i => i.score >= 0.4).map(i => docs.find(e => e.i == i.ref))
 
 		document.querySelector('ul').innerHTML = `
 			${names.map(name => `
