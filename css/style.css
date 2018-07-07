@@ -81,8 +81,6 @@ a {
   -webkit-tap-highlight-color: transparent; }
   a, :focus, a:focus, a:active, a:hover {
     outline: 0; }
-  a[href]:hover {
-    cursor: pointer; }
 
 a.item {
   color: inherit;
@@ -105,14 +103,11 @@ ul {
   overflow-y: auto;
   max-height: 84vh;
 }
-.item-note { 
+ul .item span { 
   float: right;
   color: #aaa;
   font-size: 14px;}
-.item-note.clean { color: #229022 }
-.item-note.unclean { color: #e81111 }
-
-.item-note r {
+ul .item span r {
     color: #6c97e6;
 }
 
@@ -121,22 +116,16 @@ ul {
   margin: 20px 10px;
   border-radius: 2px;
   background-color: #fff; }
-
 .list-inset .item:first-child {
   border-top-left-radius: 2px;
   border-top-right-radius: 2px; }
 .list-inset .item:last-child {
   border-bottom-right-radius: 2px;
-  border-bottom-left-radius: 2px; }
-
-.list-inset .item:last-child {
+  border-bottom-left-radius: 2px; 
   margin-bottom: -1px; }
-
 .list-inset .item {
   margin-right: 0;
   margin-left: 0; }
-  .list-inset .item.item-input input {
-    padding-right: 44px;}
 
 label, input{
   font-weight: normal;
@@ -154,21 +143,6 @@ input {
   background-image: none;
   line-height: normal;
   font-family: "Helvetica Neue", "Roboto", "Segoe UI", sans-serif; }
-
-input[type="text"] {
-  display: block;
-  padding-top: 2px;
-  padding-left: 0;
-  height: 34px;
-  color: #111;
-  vertical-align: middle;
-  font-size: 14px;
-  border: 0;
-  line-height: 16px; }
-
-.item-input input {
-  width: 100%; }
-
 input::-webkit-input-placeholder {
   color: #aaaaaa;
   text-indent: 0; }
@@ -182,34 +156,38 @@ input::-webkit-input-placeholder {
   overflow: hidden;
   padding: 6px 0 5px 16px; }
   .item-input input {
-    border-radius: 0;
     -webkit-box-flex: 1;
     flex: 1 220px;
-    appearance: none;
-    margin: 0;
+    background-color: transparent; 
+    display: block;
+    padding-top: 2px;
+    padding-left: 0;
     padding-right: 24px;
-    background-color: transparent; }
+    height: 34px;
+    color: #111;
+    vertical-align: middle;
+    font-size: 14px;
+    border: 0;
+    border-radius: 0;
+    line-height: 16px; 
+    width: 100%; }
   .item-input .icon {
-    min-width: 14px; }
-
-.placeholder-icon {
+    min-width: 14px; 
   color: #aaa; }
-  .placeholder-icon:first-child {
+  .item-input .icon:first-child {
     padding-right: 6px; }
-  .placeholder-icon:last-child {
-    padding-left: 6px; }
 
-.spinner {
+loadr {
   width: 80px;
   height: 80px;
   display: block;
   margin: 100px auto;
   background-color: #6c97e6;
   border-radius: 100%; 
-  animation: sk-scaleout 1.0s infinite ease-in-out;
+  animation: scaleout 1.0s infinite ease-in-out;
 }
 
-@-webkit-keyframes sk-scaleout {
+@-webkit-keyframes scaleout {
   0% { 
     -webkit-transform: scale(0) 
   }
@@ -219,7 +197,7 @@ input::-webkit-input-placeholder {
   }
 }
 
-@keyframes sk-scaleout {
+@keyframes scaleout {
   0% { 
     -webkit-transform: scale(0);
     transform: scale(0);

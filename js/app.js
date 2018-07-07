@@ -1,36 +1,30 @@
-(function() {
+(function($) {
 	
-	let index = lunr(function () {
-	  this.ref('i')
-	  this.field('k')
-	  this.field('t')
+	const index = lunr(function () {
+	  	this.ref('i')
+	  	this.field('k')
+	  	this.field('t')
 
-	  docs.forEach(function (doc) {
-	    this.add(doc) }, this)
+	 	for(let doc of docs) {
+	   		this.add(doc)
+	   	}
 	})
 
-	let doSearch = function() {
+	$('input').oninput = function() {
 		
-		let query = this.value
-		
-		if(query.startsWith('*')) {
-			query = query.substring(1)
-		}
+		const names = index.search(this.value).filter(i => i.score >= 0.4).map(i => docs.find(e => e.i == i.ref))
 
-		let names = index.search(query).filter(i => i.score >= 0.4).map(i => docs.find(e => e.i == i.ref))
-
-		document.querySelector('ul').innerHTML = `
-			${names.map(name => `
-				<a class="item"> ${name.k}
-					<span class="item-note">
-						${name.t}
+		$('ul').innerHTML = 
+			names.map(e => `
+				<a class="item"> ${e.k}
+					<span>
+						${e.t}
 					</span>
 				</a>`
-			).join('\n')} `
+			).join('\n')
 	}
+	
+	$('loadr').style.visibility = 'hidden'
+	$('label').style.visibility = 'visible'
 
-	document.querySelector('input').onkeyup = doSearch
-	document.querySelector('div.spinner').style.visibility = 'hidden'
-	document.querySelector('.item-input').style.visibility = 'visible'
-
-})();
+})(document.querySelector.bind(document))
